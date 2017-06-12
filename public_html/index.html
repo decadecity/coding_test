@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Coding test</title>
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <script src="./js/bundle.js" defer></script>
+    <script>document.querySelector('html').classList.add('js');</script>
+  </head>
+  <body>
+    <main>
+      <h1>Shopping basket JS application</h1>
+      <p class="no-js-warn">I'm sorry but you'll need to enable JavaScript to get this to work.</p>
+      <div class="app">
+        <div class="products">
+          <h2>Products</h2>
+          <ul class="list--plain product-list" id="product-list"></ul>
+        </div>
+        <div class="basket">
+          <h2>Basket</h2>
+          <div id="basket-items" aria-live="polite"></div>
+          <button id="checkout">Checkout</button>
+          <div class="curency-changer" id="currency-changer" aria-live="polite">
+            <h3>Change currency</h3>
+            <ul class="list--plain curency-changer__currencies" id="available-currencies"></ul>
+          </div>
+        </div>
+      </div>
+      </main>
+  </body>
+</html>

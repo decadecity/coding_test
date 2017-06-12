@@ -1,0 +1,142 @@
+/*
+Baseline styling.
+*/
+
+* {
+  font-family: sans-serif;
+}
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-size: 100%;
+  background: grey;
+}
+main {
+  margin: auto;
+  max-width: 60em;
+  background: white;
+  padding: 2rem;
+}
+img {
+  max-width: 100%;
+}
+
+/*
+OOCSS styles
+*/
+
+.list--plain {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.cell--numeric {
+  text-align: right;
+}
+
+/*
+Component styling.
+*/
+
+/* Progressively enhanced JS warning. */
+.js .no-js-warn {
+  display: none;
+}
+.app {
+  display: none;
+}
+.js .app {
+  display: block;
+}
+
+/* Focus outline for keyboard navigation. */
+*:focus {
+  outline: 1px solid orange;
+}
+.js *:focus {
+  outline-width: 0px;
+}
+.keyboard *:focus {
+  outline-width: 1px;
+}
+
+/* Product list. */
+.product-list__product-name {
+  margin-top: 0;
+}
+.product-list__product-image {
+  width: 7em;
+}
+@media (min-width:30em) {
+  .product-list {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .product-list__product {
+    flex-basis: 50%;
+  }
+  .product-list__product {
+    padding: 1rem;
+  }
+}
+@media (min-width:30em) and (max-width:50em) {
+  .product-list__product:nth-child(odd) {
+    padding-left: 0;
+  }
+}
+@media (min-width:50em) {
+  .product-list__product {
+    flex-basis: 25%;
+  }
+  .product-list__product:nth-child(4n+1) {
+    padding-left: 0;
+  }
+}
+
+/* Basket. */
+.basket__items {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.basket__items td {
+  padding: 0.25em;
+}
+
+/* Currency changer. */
+.curency-changer {
+  display: none;
+}
+.curency-changer__currencies {
+  display: flex;
+  flex-wrap: wrap;
+}
+.curency-changer__currency {
+  margin: 0.5rem;
+  margin-top: 0;
+}
+
+
+/*
+Trump classes
+
+These must work and override any specificity (hence !important).
+*/
+
+.shown {
+  display: initial !important;
+}
+.hidden {
+  display: none !important;
+}
+.invisible {
+  position: absolute !important;
+  left: -999em !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}

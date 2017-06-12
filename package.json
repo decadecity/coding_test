@@ -1,0 +1,20 @@
+{
+  "name": "coding_test",
+  "version": "0.0.0",
+  "description": "Coding test",
+  "main": "app/index.js",
+  "devDependencies": {
+    "jshint": "^2.9.4",
+    "lodash": "^4.17.4",
+    "mocha": "^3.4.2",
+    "webpack": "^2.6.1"
+  },
+  "scripts": {
+    "test": "mocha --watch",
+    "start": "webpack  --config webpack.config.js --watch",
+    "lint": "jshint app/**.js test/**.js"
+  },
+  "author": "Orde Saunders",
+  "license": "NLPL",
+  "private": true
+}
