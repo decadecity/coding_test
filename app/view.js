@@ -42,8 +42,7 @@ function Product(product) {
     <h3 className="product-list__product-name">{product.name}</h3>
     <div className="product-list__product-image"><img src="./img/placeholder.svg" alt=""/></div>
     <p>
-      {activeCurrency} {formatCurrency(currencies.convert(product.price, activeCurrency))}
-      per {product.quantity}
+      {activeCurrency} {formatCurrency(currencies.convert(product.price, activeCurrency))} per {product.quantity}
     </p>
     <div><button data-product-id={product.id}>Add to basket</button></div>
   </li>;
@@ -177,12 +176,22 @@ function keyboardHook () {
   document.removeEventListener('keydown', keyboardHook);
 }
 
+function reactAllTheThings() {
+  const element = <h1>Hello, world</h1>;
+  ReactDOM.render(
+    element,
+    document.getElementById('react')
+  );
+}
+
 /* Single public entry point. */
 
 module.exports.init = function() {
   // Initial setup.
   updateProducts();
   updateBasket();
+
+  reactAllTheThings();
 
   // Bind the event handlers.
   document.querySelector('#checkout').addEventListener('click', checkoutHandler);
