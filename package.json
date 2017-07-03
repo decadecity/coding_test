@@ -4,7 +4,13 @@
   "description": "Coding test",
   "main": "app/index.js",
   "devDependencies": {
-    "jshint": "^2.9.4",
+    "eslint": "^4.1.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-standard": "^3.0.1",
     "lodash": "^4.17.4",
     "mocha": "^3.4.2",
     "webpack": "^2.6.1"
@@ -12,7 +18,7 @@
   "scripts": {
     "test": "mocha --watch",
     "start": "webpack  --config webpack.config.js --watch",
-    "lint": "jshint app/**.js test/**.js"
+    "lint": "eslint app/**.js test/**.js"
   },
   "author": "Orde Saunders",
   "license": "NLPL",

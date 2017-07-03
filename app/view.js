@@ -50,7 +50,7 @@ function updateBasket() {
   let basketContents = '<p>No items in basket</p>';
   if (basket.items.length) {
     basketContents = _.reduce(basket.items, function(result, item) {
-      let product = products.getById(parseInt(item.id, 10));
+      const product = products.getById(parseInt(item.id, 10));
       return result += (`<tr class="basket__item">
         <td>${product.name}</td>
         <td>

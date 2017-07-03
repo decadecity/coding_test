@@ -11,7 +11,7 @@ module.exports.items = [];
 
 // Add an item to the basket.
 module.exports.add = function (id) {
-  let quantity = 1;
+  const quantity = 1;
   const inBasket = _.findIndex(module.exports.items, ['id', id]);
   if(inBasket === -1) {
     module.exports.items.push({ 'id': id, 'quantity': quantity });
