@@ -1,3 +1,5 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "React" }]*/
+
 /*
 This is all the UI: DOM manipulation and event handling.
 
@@ -16,6 +18,9 @@ could run in real browsers.
 */
 
 const _ = require('lodash');
+
+const React = require('react'); // I don't like having to include this.
+const ReactDOM = require('react-dom');
 
 const basket = require('./basket');
 const currencies = require('./currencies');
@@ -134,12 +139,22 @@ function keyboardHook () {
   document.removeEventListener('keydown', keyboardHook);
 }
 
+function reactAllTheThings() {
+  const element = <h1>Hello, world</h1>;
+  ReactDOM.render(
+    element,
+    document.getElementById('react')
+  );
+}
+
 /* Single public entry point. */
 
 module.exports.init = function() {
   // Initial setup.
   updateProducts();
   updateBasket();
+
+  reactAllTheThings();
 
   // Bind the event handlers.
   document.querySelector('#checkout').addEventListener('click', checkoutHandler);
