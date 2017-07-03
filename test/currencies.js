@@ -1,11 +1,13 @@
+/* eslint-env mocha */
+
 var assert = require('assert');
 
 var currencies = require('../app/currencies');
 
 var mockAPIResponse = {
   'success':true,
-  'terms':'https:\/\/currencylayer.com\/terms',
-  'privacy':'https:\/\/currencylayer.com\/privacy',
+  'terms':'https://currencylayer.com/terms',
+  'privacy':'https://currencylayer.com/privacy',
   'timestamp':1497008408,
   'source':'USD',
   'quotes':{
@@ -14,8 +16,8 @@ var mockAPIResponse = {
     'USDCAD':1.35096,
     'USDPLN':3.747977,
     'USDMXN':18.191197,
-    'USDGBP':0.78327
-  }
+    'USDGBP':0.78327,
+  },
 };
 
 describe('Currency conversion', function() {
@@ -28,7 +30,7 @@ describe('Currency conversion', function() {
         'GBP': 1,
         'MXN': 1/0.78327 * 18.191197,
         'PLN': 1/0.78327 * 3.747977,
-        'USD': 1/0.78327
+        'USD': 1/0.78327,
       });
     });
     it('copes with malfomred data', function() {

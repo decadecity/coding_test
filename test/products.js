@@ -1,10 +1,15 @@
+/* eslint-env mocha */
+
 var assert = require('assert');
 
 var products = require('../app/products');
 
 describe('List', function() {
   it('should be able to get a product by its ID', function() {
-    assert.deepEqual(products.getById(2), { 'id': 2, 'name': 'Milk', 'price': 1.3, 'quantity': 'bottle' });
+    assert.deepEqual(
+      products.getById(2),
+      { 'id': 2, 'name': 'Milk', 'price': 1.3, 'quantity': 'bottle' }
+    );
   });
 });
 

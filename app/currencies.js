@@ -9,7 +9,7 @@ const _ = require('lodash');
 // Map of currency -> value relative to GBP.
 module.exports.conversions = {
   // GBP is our source currency in this example.
-  'GBP': 1
+  'GBP': 1,
 };
 
 // Convert a GBP amount to a different currency.
