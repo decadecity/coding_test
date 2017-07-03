@@ -61,6 +61,24 @@ class ProductList extends React.Component {
   }
 }
 
+function Currency(props) {
+  return <li>
+    <button data-currency={props.currency} className="curency-changer__currency curency-changer__currency--{currency}">{props.currency}</button>
+  </li>;
+}
+
+class CurrencyList extends React.Component {
+  render () {
+    return (
+      <ul className="list--plain curency-changer__currencies">
+        {Object.keys(this.props).map(function (i){
+          return <Currency currency={i} key={i} />;
+        })}
+      </ul>
+    );
+  }
+}
+
 /* Template functions */
 
 function updateProducts() {
@@ -118,11 +136,11 @@ function checkoutHandler() {
   // This is our currency progressive enhancement. The currency converter
   // will only be shown if the currencies have been loaded from the API.
   if (_.size(currencies.conversions) > 1) {
-    document.querySelector('#available-currencies').innerHTML = _.reduce(currencies.conversions, function(result, conversion, currency) {
-      return result += (`<li>
-        <button data-currency="${currency}" class="curency-changer__currency curency-changer__currency--${currency}">${currency}</button>
-      </li>`);
-    }, '');
+    const element = <CurrencyList {...currencies.conversions} />;
+    ReactDOM.render(
+      element,
+      document.querySelector('#available-currencies')
+    );
     document.querySelector('#currency-changer').classList.add('shown');
   } else {
     document.querySelector('#checkout').classList.add('hidden');
@@ -159,22 +177,12 @@ function keyboardHook () {
   document.removeEventListener('keydown', keyboardHook);
 }
 
-function reactAllTheThings() {
-  const element = <h1>Hello, world</h1>;
-  ReactDOM.render(
-    element,
-    document.getElementById('react')
-  );
-}
-
 /* Single public entry point. */
 
 module.exports.init = function() {
   // Initial setup.
   updateProducts();
   updateBasket();
-
-  reactAllTheThings();
 
   // Bind the event handlers.
   document.querySelector('#checkout').addEventListener('click', checkoutHandler);
