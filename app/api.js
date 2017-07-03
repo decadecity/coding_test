@@ -25,11 +25,10 @@ function getJSON(path, callback) {
 /*
 Gets the list of available currencies.
 
-http://jsonrates.com/currencies.json was b0rked when I wrote this so hard
-coded a response to show the principles.
+Hard coded FTW.
 */
 module.exports.getCurrencies = function(callback) {
-  callback(['USD', 'AUD', 'CAD', 'PLN', 'MXN', 'GBP']);
+  callback(['USD', 'CAD', 'EUR', 'GBP']);
 };
 
 /*
@@ -47,5 +46,18 @@ module.exports.getCurrencyConversion = function(currencies, callback) {
   // conversion options if no currencies are loaded.
   // With more time to spend on the front end part of this test could add
   // some nice UI saying it had failed to load additional currencies.
-  getJSON(`http://apilayer.net/api/live?access_key=00d53c41db42e70632bd3528b377bd16&currencies=${currencies.join(',')}&format=1`, callback);
+  //getJSON(`http://apilayer.net/api/live?access_key=00d53c41db42e70632bd3528b377bd16&currencies=${currencies.join(',')}&format=1`, callback);
+
+  // Hard code response FTW.
+  callback({
+    "success":true,
+    "source":"USD",
+    "quotes":{
+      "USDUSD":1,
+      "USDGBP":0.77101,
+      "USDCAD":1.29903,
+      "USDEUR":0.878597
+    }
+  });
+
 };

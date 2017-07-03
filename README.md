@@ -1,10 +1,6 @@
 # Shopping basket coding test
 
-This is a basic shopping cart for a coding test.  As it's the minimum needed to meet the brief in the time I allowed it's not going to scale in it's current form to a full e-commerce application but it's an MVP that is structured in such a way that it can be iterated on.
-
-It's written using VanillaJS (and lodash for some utility methods).  It uses CommonJS modules with mocha tests and is bundled using webpack so it runs in the browser.  Further information can be found in comments in the source code.
-
-As no UI design was supplied I have put in place a basic wire-frame sketch UI.
+This is a basic shopping cart for a front end playground.  It's not going to scale in it's current form to a full e-commerce application but it's an MVP that is structured in such a way that it can be iterated on.
 
 ## Project structure
 

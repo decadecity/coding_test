@@ -8,10 +8,10 @@ Prices are all GBP.
 const _ = require('lodash');
 
 module.exports.list = [
-  { 'id': 0, 'name': 'Peas', 'price': 0.95, 'quantity': 'bag' },
-  { 'id': 1, 'name': 'Eggs', 'price': 2.10, 'quantity': 'dozen' },
-  { 'id': 2, 'name': 'Milk', 'price': 1.30, 'quantity': 'bottle' },
-  { 'id': 3, 'name': 'Beans', 'price': 0.73, 'quantity': 'can' },
+  { 'id': 0, 'name': 'T-shirt', 'price': 9.99, 'quantity': 'shirt' },
+  { 'id': 1, 'name': 'Hoodie', 'price': 19.99, 'quantity': 'hoodie' },
+  { 'id': 2, 'name': 'Trainers', 'price': 49.99, 'quantity': 'pair' },
+  { 'id': 3, 'name': 'Cap', 'price': 24.99, 'quantity': 'hat' },
 ];
 
 module.exports.getById = function(id) {

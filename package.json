@@ -1,7 +1,7 @@
 {
-  "name": "coding_test",
+  "name": "front_end_playground",
   "version": "0.0.0",
-  "description": "Coding test",
+  "description": "Front end playground",
   "main": "app/index.js",
   "devDependencies": {
     "jshint": "^2.9.4",
