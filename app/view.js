@@ -1,4 +1,4 @@
-/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "React" }]*/
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "React|Product*" }]*/
 
 /*
 This is all the UI: DOM manipulation and event handling.
@@ -35,20 +35,40 @@ function formatCurrency(amount) {
   return `${amount[0]}.${_.pad(amount[1], 2, 0)}`;
 }
 
+/* Components */
+
+function Product(product) {
+  return <li className="product-list__product">
+    <h3 className="product-list__product-name">{product.name}</h3>
+    <div className="product-list__product-image"><img src="./img/placeholder.svg" alt=""/></div>
+    <p>
+      {activeCurrency} {formatCurrency(currencies.convert(product.price, activeCurrency))}
+      per {product.quantity}
+    </p>
+    <div><button data-product-id={product.id}>Add to basket</button></div>
+  </li>;
+}
+
+class ProductList extends React.Component {
+  render () {
+    return (
+      <ul className="list--plain product-list" >
+        {products.list.map(function(product, i){
+          return <Product {...product} key={i} />;
+        })}
+      </ul>
+    );
+  }
+}
+
 /* Template functions */
 
 function updateProducts() {
-  document.querySelector('#product-list').innerHTML = _.reduce(products.list, function(result, product) {
-    return result += (`<li class="product-list__product">
-      <h3 class="product-list__product-name">${product.name}</h3>
-      <div class="product-list__product-image"><img src="./img/placeholder.svg" alt=""/></div>
-      <p>
-        ${activeCurrency} ${formatCurrency(currencies.convert(product.price, activeCurrency))}
-        per ${product.quantity}
-      </p>
-      <div><button data-product-id="${product.id}">Add to basket</button></div>
-    </li>`);
-  }, '');
+  const element = <ProductList {...products} />;
+  ReactDOM.render(
+    element,
+    document.querySelector('#product-list')
+  );
 }
 
 function updateBasket() {
