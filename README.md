@@ -1,4 +1,4 @@
-# Shopping basket coding test
+# Shopping basket frond end playground
 
 This is a basic shopping cart for a front end playground.  It's not going to scale in it's current form to a full e-commerce application but it's an MVP that is structured in such a way that it can be iterated on.
 
