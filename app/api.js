@@ -9,6 +9,7 @@ and wouldn't prove much.
 */
 
 // Retrieve JSON data via asynchronous GET request.
+/* eslint-disable no-unused-vars */
 function getJSON(path, callback) {
   const httpRequest = new XMLHttpRequest();
   httpRequest.onreadystatechange = function() {
@@ -21,6 +22,7 @@ function getJSON(path, callback) {
   httpRequest.open('GET', path);
   httpRequest.send();
 }
+/* eslint-enable no-unused-vars */
 
 /*
 Gets the list of available currencies.
@@ -50,14 +52,14 @@ module.exports.getCurrencyConversion = function(currencies, callback) {
 
   // Hard code response FTW.
   callback({
-    "success":true,
-    "source":"USD",
-    "quotes":{
-      "USDUSD":1,
-      "USDGBP":0.77101,
-      "USDCAD":1.29903,
-      "USDEUR":0.878597
-    }
+    'success':true,
+    'source':'USD',
+    'quotes':{
+      'USDUSD':1,
+      'USDGBP':0.77101,
+      'USDCAD':1.29903,
+      'USDEUR':0.878597,
+    },
   });
 
 };

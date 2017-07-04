@@ -1,4 +1,4 @@
-/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "React|Product*" }]*/
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "React|Product|Currency|Basket*" }]*/
 
 /*
 This is all the UI: DOM manipulation and event handling.
@@ -78,6 +78,50 @@ class CurrencyList extends React.Component {
   }
 }
 
+function BasketItem(props) {
+  const product = products.getById(parseInt(props.id, 10));
+  return <tr className="basket__item">
+    <td>{product.name}</td>
+    <td>
+      {activeCurrency} {formatCurrency(currencies.convert(product.price, activeCurrency))} per per {product.quantity}
+    </td>
+    <td className="cell--numeric">{props.quantity}</td>
+    <td className="cell--numeric">
+      {activeCurrency} {formatCurrency(currencies.convert(props.quantity * product.price, activeCurrency))}
+    </td>
+    <td className="basket__item-remove"><button data-product-id={props.id}>Remove</button></td>
+  </tr>;
+}
+
+class Basket extends React.Component {
+  render() {
+    return (
+      <table className="basket__items">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Cost</th>
+            <th scope="col" className="invisible">Actions</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th colSpan="3" scope="row">Basket total</th>
+            <td className="cell--numeric">{activeCurrency} {formatCurrency(currencies.convert(basket.total(), activeCurrency))}</td>
+          </tr>
+        </tfoot>
+        <tbody>
+          {basket.items.map(function(product, i){
+            return <BasketItem {...product} key={i} />;
+          })}
+        </tbody>
+      </table>
+    );
+  }
+}
+
 /* Template functions */
 
 function updateProducts() {
@@ -89,44 +133,14 @@ function updateProducts() {
 }
 
 function updateBasket() {
-  let basketContents = '<p>No items in basket</p>';
+  let element =  <p>No items in basket</p>;
   if (basket.items.length) {
-    basketContents = _.reduce(basket.items, function(result, item) {
-      const product = products.getById(parseInt(item.id, 10));
-      return result += (`<tr class="basket__item">
-        <td>${product.name}</td>
-        <td>
-          ${activeCurrency} ${formatCurrency(currencies.convert(product.price, activeCurrency))}
-          per per ${product.quantity}
-        </td>
-        <td class="cell--numeric">${item.quantity}</td>
-        <td class="cell--numeric">
-          ${activeCurrency}
-          ${formatCurrency(currencies.convert(item.quantity * product.price, activeCurrency))}
-        </td>
-        <td class="basket__item-remove"><button data-product-id="${item.id}">Remove</button></span>
-      </tr>`);
-    }, '');
-    basketContents = `<table class="basket__items">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Cost</th>
-          <th scope="col" class="invisible">Actions</th>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <th colspan="3" scope="row">Basket total</th>
-          <td class="cell--numeric">${activeCurrency} ${formatCurrency(currencies.convert(basket.total(), activeCurrency))}</td>
-        </tr>
-      </tfoot>
-      <tbody>${basketContents}</tbody>
-    </table>`;
+    element = <Basket/>;
   }
-  document.querySelector('#basket-items').innerHTML = basketContents;
+  ReactDOM.render(
+    element,
+    document.querySelector('#basket-items')
+  );
 }
 
 /* Event handler functions. */
@@ -176,22 +190,12 @@ function keyboardHook () {
   document.removeEventListener('keydown', keyboardHook);
 }
 
-function reactAllTheThings() {
-  const element = <h1>Hello, world</h1>;
-  ReactDOM.render(
-    element,
-    document.getElementById('react')
-  );
-}
-
 /* Single public entry point. */
 
 module.exports.init = function() {
   // Initial setup.
   updateProducts();
   updateBasket();
-
-  reactAllTheThings();
 
   // Bind the event handlers.
   document.querySelector('#checkout').addEventListener('click', checkoutHandler);
